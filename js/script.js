@@ -173,33 +173,69 @@ function drawCanvas() {
     }
 }
 
-// Bild-Drag-Funktionalität
+// Canvas-Referenz
 const canvas = document.getElementById('canvas');
-canvas.addEventListener('mousedown', function (e) {
-    if (uploadedImage) {
-        isDragging = true;
-        dragStartX = e.offsetX - imageOffsetX;
-        dragStartY = e.offsetY - imageOffsetY;
-    }
-});
-
-canvas.addEventListener('mousemove', function (e) {
-    if (isDragging && uploadedImage) {
-        const { width, height } = calculateImageDimensions(uploadedImage, canvas);
-
-        if (uploadedImage.width > uploadedImage.height) {
-            imageOffsetX = e.offsetX - dragStartX;
-            imageOffsetX = Math.min(0, Math.max(imageOffsetX, canvas.width - width));
-        } else {
-            imageOffsetY = e.offsetY - dragStartY;
-            imageOffsetY = Math.min(0, Math.max(imageOffsetY, canvas.height - height));
+if (!canvas) {
+    console.error('Canvas element not found');
+} else {
+    // Bild-Drag-Funktionalität für Maus
+    canvas.addEventListener('mousedown', function (e) {
+        if (uploadedImage) {
+            isDragging = true;
+            dragStartX = e.offsetX - imageOffsetX;
+            dragStartY = e.offsetY - imageOffsetY;
         }
-        drawCanvas();
-    }
-});
+    });
 
-canvas.addEventListener('mouseup', () => isDragging = false);
-canvas.addEventListener('mouseout', () => isDragging = false);
+    canvas.addEventListener('mousemove', function (e) {
+        if (isDragging && uploadedImage) {
+            const { width, height } = calculateImageDimensions(uploadedImage, canvas);
+
+            if (uploadedImage.width > uploadedImage.height) {
+                imageOffsetX = e.offsetX - dragStartX;
+                imageOffsetX = Math.min(0, Math.max(imageOffsetX, canvas.width - width));
+            } else {
+                imageOffsetY = e.offsetY - dragStartY;
+                imageOffsetY = Math.min(0, Math.max(imageOffsetY, canvas.height - height));
+            }
+            drawCanvas();
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => isDragging = false);
+    canvas.addEventListener('mouseout', () => isDragging = false);
+
+    // Bild-Drag-Funktionalität für Touch
+    canvas.addEventListener('touchstart', function (e) {
+        if (uploadedImage) {
+            isDragging = true;
+            // Nur den ersten Touch-Punkt verwenden
+            dragStartX = e.touches[0].clientX - imageOffsetX;
+            dragStartY = e.touches[0].clientY - imageOffsetY;
+        }
+    });
+
+    canvas.addEventListener('touchmove', function (e) {
+        if (isDragging && uploadedImage) {
+            // Verhindert die Standard-Touch-Scroll-Funktion
+            e.preventDefault();
+
+            const { width, height } = calculateImageDimensions(uploadedImage, canvas);
+
+            if (uploadedImage.width > uploadedImage.height) {
+                imageOffsetX = e.touches[0].clientX - dragStartX;
+                imageOffsetX = Math.min(0, Math.max(imageOffsetX, canvas.width - width));
+            } else {
+                imageOffsetY = e.touches[0].clientY - dragStartY;
+                imageOffsetY = Math.min(0, Math.max(imageOffsetY, canvas.height - height));
+            }
+            drawCanvas();
+        }
+    });
+
+    canvas.addEventListener('touchend', () => isDragging = false);
+    canvas.addEventListener('touchcancel', () => isDragging = false);
+}
 
 // Download-Button für das Sharepic
 document.getElementById('downloadBtn').addEventListener('click', function (event) {
