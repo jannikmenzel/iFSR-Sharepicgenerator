@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/iFSR-Sharepicgenerator.iml" filepath="$PROJECT_DIR$/iFSR-Sharepicgenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/iFSR-Sharepicgenerator.iml" filepath="$PROJECT_DIR$/.idea/iFSR-Sharepicgenerator.iml" />
     </modules>
   </component>
 </project>
