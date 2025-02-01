@@ -97,7 +97,7 @@ label {
 
 .form-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 10px 20px;
     align-items: center;
     max-width: 500px;
