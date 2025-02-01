@@ -45,7 +45,9 @@ document.getElementById('subline').addEventListener('input', generateSharepic);
 document.getElementById('fontSize').addEventListener('input', generateSharepic);
 document.getElementById('boxHeight').addEventListener('input', generateSharepic);
 document.getElementById('logoSize').addEventListener('input', generateSharepic);
-document.getElementById('logoLeft').addEventListener('change', generateSharepic);
+document.getElementById('logoPosition').addEventListener('change', generateSharepic);
+document.getElementById('logoBackground').addEventListener('change', generateSharepic);
+document.getElementById('logoColor').addEventListener('input', drawCanvas);
 
 // Verarbeitet den Upload eines neuen Hintergrundbildes
 function handleImageUpload(event) {
@@ -98,8 +100,17 @@ function drawCanvas() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
-    canvas.width = 1080;
-    canvas.height = 1080;
+    const canvasSize = document.getElementById('canvasSize').value;
+    if (canvasSize === 'square') {
+        canvas.width = 1080;
+        canvas.height = 1080;
+    } else if (canvasSize === 'horizontal') {
+        canvas.width = 1080;
+        canvas.height = 1920;
+    } else if (canvasSize === 'vertical') {
+        canvas.width = 1920;
+        canvas.height = 1080;
+    }
 
     // Zeichnet das hochgeladene Hintergrundbild
     if (uploadedImage) {
@@ -166,14 +177,85 @@ function drawCanvas() {
             logoHeight = logoWidth / logoRatio;
         }
 
-        const logoLeft = document.getElementById('logoLeft').checked;
-        const logoX = logoLeft ? 20 : canvas.width - logoWidth - 20;
+        const logoPosition = document.getElementById('logoPosition').value;
+        let logoX, logoY;
 
-        ctx.drawImage(uploadedLogo, logoX, 20, logoWidth, logoHeight);
+        switch (logoPosition) {
+            case 'top-left':
+                logoX = 20;
+                logoY = 20;
+                break;
+            case 'top-right':
+                logoX = canvas.width - logoWidth - 20;
+                logoY = 20;
+                break;
+            case 'bottom-left':
+                logoX = 20;
+                logoY = canvas.height - logoHeight - 20;
+                break;
+            case 'bottom-right':
+                logoX = canvas.width - logoWidth - 20;
+                logoY = canvas.height - logoHeight - 20;
+                break;
+        }
+
+        // Erstellt ein temporäres Canvas für die Farbmanipulation
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = logoWidth;
+        tempCanvas.height = logoHeight;
+        const tempCtx = tempCanvas.getContext('2d');
+
+        // Zeichnet das Original-Logo
+        tempCtx.drawImage(uploadedLogo, 0, 0, logoWidth, logoHeight);
+
+        // Holt die ausgewählte Farbe
+        const logoColor = document.getElementById('logoColor').value;
+
+        // Setzt den Modus auf "source-atop" und färbt das Logo um
+        tempCtx.globalCompositeOperation = 'source-atop';
+        tempCtx.fillStyle = logoColor;
+        tempCtx.fillRect(0, 0, logoWidth, logoHeight);
+
+        // Zeichnet den Hintergrund, falls aktiviert
+        const logoBackground = document.getElementById('logoBackground').checked;
+        if (logoBackground) {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(logoX, logoY, logoWidth, logoHeight);
+        }
+
+        // Zeichnet das eingefärbte Logo auf das Haupt-Canvas
+        ctx.drawImage(tempCanvas, logoX, logoY);
     }
 }
 
 // Canvas-Referenz
+document.getElementById('canvasSize').addEventListener('change', function (e) {
+    const canvas = document.getElementById('canvas');
+    const selectedSize = e.target.value;
+
+    // Setze die Canvas-Größe basierend auf der Auswahl
+    switch (selectedSize) {
+        case 'square':
+            canvas.width = 1080;
+            canvas.height = 1080;
+            break;
+        case 'horizontal':
+            canvas.width = 1080;
+            canvas.height = 1920;
+            break;
+        case 'vertical':
+            canvas.width = 1920;
+            canvas.height = 1080;
+            break;
+    }
+
+    // Setze die Offsets zurück, wenn die Canvas-Größe geändert wird
+    imageOffsetX = 0;
+    imageOffsetY = 0;
+
+    drawCanvas();
+});
+
 const canvas = document.getElementById('canvas');
 if (!canvas) {
     console.error('Canvas element not found');

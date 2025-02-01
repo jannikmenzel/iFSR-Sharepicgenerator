@@ -49,30 +49,62 @@
 <!-- Generator -->
 <section class="container my-5 text-center">
     <div class="container-generator">
-        <!-- Preview auf der linken Seite -->
+        <!-- Preview -->
         <div class="preview">
             <canvas id="canvas"></canvas>
+            <div class="canvas-hint">
+                <p>Hinweis: Du kannst das Hintergrundbild durch Ziehen mit der Maus oder </p>
+                <p>Wischen mit dem Finger frei verschieben!</p>
+            </div>
         </div>
 
-        <!-- Formular auf der rechten Seite -->
+        <!-- Formular -->
         <div class="form">
             <form>
+                <div class="form-grid">
+                    <label for="canvasSize">Canvas Größe:</label>
+                    <select id="canvasSize">
+                        <option value="square">1080 x 1080</option>
+                        <option value="horizontal">1080 x 1920</option>
+                        <option value="vertical">1920 x 1080</option>
+                    </select>
+                </div>
+
+                <hr>
+
                 <label for="imageUpload">Bild hochladen:</label>
                 <input type="file" id="imageUpload" accept="image/*">
 
                 <label for="logoUpload">Logo hochladen:</label>
                 <input type="file" id="logoUpload" accept="image/*">
 
-                <div class="checkbox-item">
-                    <label for="logoLeft">Logo links platzieren:</label>
-                    <input type="checkbox" id="logoLeft">
+                <hr>
+
+                <div class="form-grid">
+                    <label for="logoColor">Farbe des Logos:</label>
+                    <input type="color" id="logoColor" value="#000000">
+
+                    <label for="logoPosition">Logo Position:</label>
+                    <select id="logoPosition">
+                        <option value="top-left">Oben links</option>
+                        <option value="top-right" selected>Oben rechts</option>
+                        <option value="bottom-left">Unten links</option>
+                        <option value="bottom-right">Unten rechts</option>
+                    </select>
+
+                    <label for="logoBackground">Logo Hintergrund:</label>
+                    <input type="checkbox" id="logoBackground">
                 </div>
 
+                <hr>
+
                 <label for="headline">Überschrift:</label>
-                <textarea id="headline" placeholder="Gib deinen Text hier ein"></textarea>
+                <textarea id="headline" spellcheck="true" placeholder="Gib deinen Text hier ein"></textarea>
 
                 <label for="subline">Unterzeile:</label>
-                <textarea id="subline" placeholder="Gib deinen Untertext hier ein"></textarea>
+                <textarea id="subline" spellcheck="true" placeholder="Gib deinen Untertext hier ein"></textarea>
+
+                <hr>
 
                 <label for="fontSize">Schriftgröße:</label>
                 <input type="range" id="fontSize" min="30" max="60" value="45">
