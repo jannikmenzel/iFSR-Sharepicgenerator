@@ -185,6 +185,7 @@ input[type="checkbox"] {
     background-color: #fff;
     border-radius: 8px;
     min-height: 500px;
+    justify-content: flex-start;
 }
 
 #canvas {
@@ -203,6 +204,12 @@ input[type="checkbox"] {
     font-size: 14px;
     color: #666;
     text-align: center;
+    width: 100%;
+    max-width: 500px;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.4;
+    padding: 0 10px;
 }
 
 .canvas-hint p {
