@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFSR Sharepicgenerator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.svg">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Fachschaftsrat Informatik</a>
+        <img src="assets/icons/icon.png" alt="Profilbild">
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="hero-section text-center text-light">
+    <div class="container py-5">
+        <h1 class="display-3">iFSR Sharepicgenerator</h1>
+        <p class="lead">Der Sharepicgenerator des <span class="highlight-name">FSR Informatik</span>.</p>
+
+        <!-- Social Media Links -->
+        <div class="social-links mt-4 d-flex justify-content-center align-items-center gap-3">
+            <a href="https://www.instagram.com/ifsrde" class="text-decoration-none text-light" target="_blank">
+                <img src="assets/icons/instagram.svg" alt="Instagram" width="50">
+            </a>
+            <a href="https://t.me/s/ifsrde" class="text-decoration-none text-light" target="_blank">
+                <img src="assets/icons/telegram.svg" alt="Telegram" width="50">
+            </a>
+            <a href="https://github.com/fsr" class="text-decoration-none text-light" target="_blank">
+                <img src="assets/icons/github.svg" alt="GitHub" width="50">
+            </a>
+            <a href="https://toot.kif.rocks/@iFSR" class="text-decoration-none text-light" target="_blank">
+                <img src="assets/icons/mastodon.svg" alt="Mastodon" width="50">
+            </a>
+            <a href="https://discord.com/invite/639kX4tNg4" class="text-decoration-none text-light" target="_blank">
+                <img src="assets/icons/discord.svg" alt="Discord" width="50">
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Generator -->
+<section class="container my-5 text-center">
+    <div class="container-generator">
+        <!-- Preview auf der linken Seite -->
+        <div class="preview">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <!-- Formular auf der rechten Seite -->
+        <div class="form">
+            <form>
+                <label for="imageUpload">Bild hochladen:</label>
+                <input type="file" id="imageUpload" accept="image/*">
+
+                <label for="logoUpload">Logo hochladen:</label>
+                <input type="file" id="logoUpload" accept="image/*">
+
+                <div class="checkbox-item">
+                    <label for="logoLeft">Logo links platzieren:</label>
+                    <input type="checkbox" id="logoLeft">
+                </div>
+
+                <label for="headline">Überschrift:</label>
+                <textarea id="headline" placeholder="Gib deinen Text hier ein"></textarea>
+
+                <label for="subline">Unterzeile:</label>
+                <textarea id="subline" placeholder="Gib deinen Untertext hier ein"></textarea>
+
+                <label for="fontSize">Schriftgröße:</label>
+                <input type="range" id="fontSize" min="30" max="60" value="45">
+
+                <label for="logoSize">Logogröße:</label>
+                <input type="range" id="logoSize" min="50" max="350" value="200">
+
+                <label for="boxHeight">Boxhöhe:</label>
+                <input type="range" id="boxHeight" min="200" max="500" value="350">
+
+                <!-- Button zum Herunterladen -->
+                <button id="downloadBtn">Download</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Copyright und Hinweise -->
+<section class="container my-5 text-center">
+    <div class="container" style="max-width: 800px;">
+        <h2 class="display-5">Hinweis</h2>
+        <p>Für das Hochladen von Bildern und Logos gilt, dass ausschließlich Material hochgeladen werden darf, für das du die entsprechenden Rechte besitzt. Falls du keine eigenen Bilder oder Logos verwenden möchtest, kannst du auf Plattformen wie Unsplash, Pexels und Pixabay zurückgreifen, die lizenzfreie oder copyrightfreie Fotos anbieten.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark py-4 text-center text-light">
+    <p>&copy; 2025 AG Öffentlichkeitsarbeit</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

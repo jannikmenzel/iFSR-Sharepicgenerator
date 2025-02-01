@@ -1,0 +1,246 @@
+/* ========================
+   Allgemeines Styling
+   ======================== */
+html {
+    background-color: #212528;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #fefefe;
+    min-height: 100vh;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* ========================
+   Navigation
+   ======================== */
+.navbar {
+    padding: 1rem;
+    background-color: #354f52;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.navbar img {
+    height: 40px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* ========================
+   Hero Section
+   ======================== */
+.hero-section {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #333;
+    padding: 0 20px;
+    background-color: #f8f9fa;
+    overflow: hidden;
+}
+
+.hero-section h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    margin: 0;
+    color: #333;
+}
+
+.hero-section p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 1.4rem;
+    margin-top: 5px;
+    color: #333;
+}
+
+/* ========================
+   Generator Section
+   ======================== */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: auto;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+textarea, input[type="file"], input[type="range"], input[type="checkbox"] {
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 4px;
+}
+
+input[type="range"]:focus {
+    outline: none;
+    background: #ccc;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.container-generator {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.preview {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    min-height: 500px;
+}
+
+#canvas {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* ========================
+   Button Styling
+   ======================== */
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    background-color: #6a994e99;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    outline: none;
+}
+
+button:hover {
+    background-color: #6a994ecc;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #c6c6c6;
+    cursor: not-allowed;
+}
+
+/* ========================
+   Footer
+   ======================== */
+footer {
+    background-color: #2f3e46;
+    color: #bbb;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+/* ========================
+   Responsives Design
+   ======================== */
+@media (max-width: 1200px) {
+    .hero-section h1 {
+        font-size: 3.7rem;
+    }
+
+    .hero-section p {
+        font-size: 1.3rem;
+    }
+
+    .container-generator {
+        flex-direction: column;
+    }
+
+    .preview {
+        order: -1;
+        min-height: 400px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    #canvas {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+        transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero-section {
+        padding: 30px 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1.0rem;
+    }
+}
