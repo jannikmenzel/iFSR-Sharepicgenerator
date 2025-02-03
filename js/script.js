@@ -12,11 +12,13 @@ const defaultImage = 'assets/images/defaultBackground.jpg';
 const defaultLogo = 'assets/images/defaultLogo.svg';
 const defaultHeadline = 'iFSR sharepic Headline';
 const defaultSubline = 'Hier könnte ein unfassbar fesselnder Werbetext des Fachschaftsrats Informatik stehen.';
+const defaultCopyright = 'Bild: ⓒ 2025 Name';
 
 // Initialisierung beim Laden der Seite
 window.onload = function () {
     document.getElementById('headline').value = defaultHeadline;
     document.getElementById('subline').value = defaultSubline;
+    document.getElementById('copyright').value = defaultCopyright;
 
     loadDefaultImage();
     loadDefaultLogo();
@@ -42,6 +44,7 @@ document.getElementById('imageUpload').addEventListener('change', handleImageUpl
 document.getElementById('logoUpload').addEventListener('change', handleLogoUpload);
 document.getElementById('headline').addEventListener('input', generateSharepic);
 document.getElementById('subline').addEventListener('input', generateSharepic);
+document.getElementById('copyright').addEventListener('input', generateSharepic);
 document.getElementById('fontSize').addEventListener('input', generateSharepic);
 document.getElementById('boxHeight').addEventListener('input', generateSharepic);
 document.getElementById('logoSize').addEventListener('input', generateSharepic);
@@ -127,6 +130,7 @@ function drawCanvas() {
     // Holt die Texteingaben
     const headline = document.getElementById('headline').value;
     const subline = document.getElementById('subline').value;
+    const copyright = document.getElementById('copyright').value;
     const fontSize = parseInt(document.getElementById('fontSize').value);
 
     // Setzt Schriftfarbe
@@ -134,6 +138,7 @@ function drawCanvas() {
 
     const headlineFont = `bold ${fontSize * 1.2}px 'Cairo', sans-serif`;
     const sublineFont = `${fontSize}px 'Cairo', sans-serif`;
+    const copyrightFont = `${fontSize * 0.5}px 'Cairo', sans-serif`;
     const maxWidth = canvas.width - 2 * boxPadding - 40;
 
     // Funktion zum Umbruch langer Texte
@@ -164,6 +169,7 @@ function drawCanvas() {
     // Zeichnet Headline und Subline ins Canvas
     wrapText(ctx, headline, boxPadding + 20, canvas.height - boxHeight - boxPadding + 80, maxWidth, headlineFont);
     wrapText(ctx, subline, boxPadding + 20, canvas.height - boxHeight - boxPadding + 150, maxWidth, sublineFont);
+    wrapText(ctx, copyright, boxPadding + 20, canvas.height - boxPadding - 20, maxWidth, copyrightFont);
 
     // Zeichnet das Logo
     if (uploadedLogo) {

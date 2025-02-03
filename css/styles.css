@@ -17,6 +17,10 @@ body {
     line-height: 1.6;
 }
 
+.copyright {
+    max-width: 800px;
+}
+
 /* ========================
    Navigation
    ======================== */
